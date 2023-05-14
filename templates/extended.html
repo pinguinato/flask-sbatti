@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Titolo ereditato{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+        h1 {
+            color:red;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Hello, {{ name }}, today is: {{ date_of_the_day }}</h1>
+{% endblock %}

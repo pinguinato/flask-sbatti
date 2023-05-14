@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from datetime import date
 
 app = Flask(__name__)
 
@@ -19,6 +20,20 @@ def user(name):
 def user_with_filters(name):
     string_to_trim = "  [ string to trim ]  "
     return render_template("user_with_filters.html", name=name, string_to_trim=string_to_trim)
+
+
+# route with control structures
+@app.route("/user_control_structure/<username>")
+def user_control_structure(username):
+    programming_language_list = ['Python', 'Java', 'Javascript', 'Sql', 'PHP', 'Ruby', 'Perl', 'Go']
+    return render_template("user_control_structure.html", username=username, list=programming_language_list)
+
+
+# route with use of blocks
+@app.route("/blocks/<name>")
+def use_of_blocks(name):
+    date_of_the_day = date.today()
+    return render_template("extended.html", name=name, date_of_the_day=date_of_the_day)
 
 
 

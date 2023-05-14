@@ -82,7 +82,7 @@ Esempi di filtri:
 - capitalize (converte la prima lettera in maiuscolo)
 - lower (converte in minuscolo tutto)
 - upper (converte in maiuscolo tutto)
-- title 
+- title
 - trim (rimuove tutti gli spazi bianchi ad inizio e fine stringa)
 - striptags (rimuove tutti i valori html prima del rendering del valore stesso)
 
@@ -92,3 +92,62 @@ Non usare il filtro *safe* sulle variabili non protette dei form dove vengono im
 
 ##### Strutture di controllo Jinja2
 
+Esempio di strutture di controllo:
+
+                {% if user %}
+                        Hello {{ user }}
+                {% else %}
+                        Hello stranger
+                {% endif %}
+
+                <ul>
+                        {% for comment in comments %}
+                                <li>{{ comment }}</li>
+                        {% endfor %}
+                </ul>
+
+##### Macro
+
+Jinja2 supporta le Macro che sono simili a delle funzioni del codice Python
+
+Esempio:
+
+                {% macro render_comment(comment) %}
+                        <li>{{ comment }}</li>
+                {% endmacro %}
+
+                <ul>
+                        {% for comment in comments %}
+                                {{ render_comment(comment) }}
+                        {% endfor %}
+                </ul>
+
+Le macro per renderle più usabili si possono importare in altro codice e richiamare.
+
+##### Include
+
+Serve per importare porzioni di template da un template ad un altro per riutilizzarlo o estenderlo.
+
+Esempio:
+
+                {% include 'index.html' %}
+
+##### Blocchi
+
+Altro modo molto pratico per portarsi dietro porzioni di codice da riutilizzare.
+
+Esempio:
+
+        <body>
+                {% block content %}
+
+                {% endblock %}
+        </body>
+
+##### Extends
+
+Estende un intero template:
+
+        {%  extends 'base.html' %}
+
+### Integrazione di Bootstrap dentro i Flask Templates
