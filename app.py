@@ -1,7 +1,9 @@
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
 from datetime import date
 
 app = Flask(__name__)
+bootstrap=Bootstrap(app)
 
 # my project's home page
 @app.route("/")
@@ -35,6 +37,11 @@ def use_of_blocks(name):
     date_of_the_day = date.today()
     return render_template("extended.html", name=name, date_of_the_day=date_of_the_day)
 
+
+# route con Bootstrap
+@app.route("/bootstrap/<name>")
+def use_of_bootstrap(name):
+    return render_template("page_with_bootstrap.html", name=name)
 
 
 if __name__ == "__main__":

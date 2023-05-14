@@ -151,3 +151,18 @@ Estende un intero template:
         {%  extends 'base.html' %}
 
 ### Integrazione di Bootstrap dentro i Flask Templates
+
+Web Framewrok open source di Twitter. Framewrok client side. Si può importare Boostrap in Flask come libreria nella forma tradizionale, richiamandola nel file HTML, però Flask dà la possibliità di installarlo direttamente dentro il progetto in questo modo:
+
+                pip install flask-bootstrap
+
+                pip freeze > requirements.txt
+
+E poi richiamandolo nell'app del progetto:
+
+                from flask_bootstrap import Bootstrap
+
+                bootstrap=Bootstrap(app)
+
+per poterlo inizializzare.
+
