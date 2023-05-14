@@ -44,5 +44,11 @@ def use_of_bootstrap(name):
     return render_template("page_with_bootstrap.html", name=name)
 
 
+# error page 404
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)

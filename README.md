@@ -166,3 +166,12 @@ E poi richiamandolo nell'app del progetto:
 
 per poterlo inizializzare.
 
+### Pagine degli errori customizzate
+
+Per definire pagine degli errori in Flask dobbiamo servirci del decorator **errorhandler**.
+
+Esempio di definizione di una pagina 404:
+
+                @app.errorhandler(404)
+                def page_not_found(e):
+                        return render_template("404.html"), 404
