@@ -14,6 +14,13 @@ def user(name):
     return render_template("user.html", name=name)
 
 
+# route with templates with filters
+@app.route("/user_with_filters/<name>")
+def user_with_filters(name):
+    string_to_trim = "  [ string to trim ]  "
+    return render_template("user_with_filters.html", name=name, string_to_trim=string_to_trim)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -44,3 +44,51 @@ Provvede add integrare Jinja2 in Flask. Questa funzione prendere il nome del fil
 Questo template riceve una variabile **name** dalla rotta e questa variabile deve poi avere un riscontro nel file .html del template Jinja.
 
 **name=name** può confondere, facciamo chiarezza: il parametro name sulla sinistra indica quello richiamato nel file di template user.html, mentre il parametro sulla destra rappresenta quello corrente nella rotta.
+
+#### Sintassi Jinja2
+
+Il modo in cui nel file html ho di richiamare il parametro passato in rotta, descritta sopra:
+
+                {{ name }}
+
+Ad esempio:
+
+                <h1>Hello {{ name }}</h1>
+
+Jinja può riconoscere variabili di diverso tipo:
+
+- valori dizionario
+- liste
+- valore da una lista
+- valore da un metodo di un oggetto
+
+Ad esempio:
+
+                {{ name['key'] }}
+
+                {{ name_list[3] }}
+
+                {{ name_list[my_name] }}
+
+                {{ name.some_method() }}
+
+Possibilità di usare anche dei **filtri**:
+
+                <h1>Hello, {{ name|capitalize }}
+
+Esempi di filtri:
+
+- safe (renderizza il valore senza aplpicare escape)
+- capitalize (converte la prima lettera in maiuscolo)
+- lower (converte in minuscolo tutto)
+- upper (converte in maiuscolo tutto)
+- title 
+- trim (rimuove tutti gli spazi bianchi ad inizio e fine stringa)
+- striptags (rimuove tutti i valori html prima del rendering del valore stesso)
+
+**N.B.** Jinja di default effettua l'escape su tutti le varibili nel template per questioni di sicurezza.
+
+Non usare il filtro *safe* sulle variabili non protette dei form dove vengono immmessi dati degli utenti!
+
+##### Strutture di controllo Jinja2
+
