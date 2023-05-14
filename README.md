@@ -41,4 +41,6 @@ Provvede add integrare Jinja2 in Flask. Questa funzione prendere il nome del fil
                 def user(name):
                         return render_template('user.html', name=name)
 
-Questo template riceve una variabile **name** dalla rotta e questa varibile deve poi avere un riscontro nel file .html del template Jinja.
+Questo template riceve una variabile **name** dalla rotta e questa variabile deve poi avere un riscontro nel file .html del template Jinja.
+
+**name=name** può confondere, facciamo chiarezza: il parametro name sulla sinistra indica quello richiamato nel file di template user.html, mentre il parametro sulla destra rappresenta quello corrente nella rotta.
