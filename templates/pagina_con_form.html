@@ -1,0 +1,13 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Esempio di form con Flask{% endblock %}
+
+
+{% block content %}
+<form method="POST">
+    {{ form.hidden_tag() }} 
+    {{ form.name.label }} {{ form.name() }}
+    {{ form.submit() }}
+</form>
+{% endblock %}
+

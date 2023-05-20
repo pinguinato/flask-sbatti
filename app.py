@@ -3,10 +3,14 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from datetime import date
 from datetime import datetime
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 bootstrap=Bootstrap(app)
 moment=Moment(app)
+app.config['SECRET_KEY']='38d0776e0970b72f85140f2ca6f2d5'
 
 # my project's home page
 @app.route("/")
@@ -57,6 +61,24 @@ def page_not_found(e):
 @app.route("/favicon")
 def favicon():
     return render_template("favicon.html", current_time=datetime.utcnow())
+
+# definizione di una classe per il form
+class NameForm(FlaskForm):
+    name = StringField('What is you name?', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    
+
+
+# rotta con un form
+@app.route("/form_esempio", methods=['GET', 'POST'])
+def form_esempio():
+    name = None
+    form = NameForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data = ''
+    return render_template("pagina_con_form.html", form=form, name=name)
+    
 
 
 

@@ -248,3 +248,42 @@ CSRF sui form. Ogni flask form si rappresenta in una Classe Python, che eredita 
 
 Esempio:
 
+        from flask_wtf import FlaskForm
+        from wtforms import StringField, SubmitField
+        from wtforms.validators import DataRequired
+
+
+        app.config['SECRET_KEY']='38d0776e0970b72f85140f2ca6f2d5'
+
+
+        # definizione di una classe per il form
+        class NameForm(FlaskForm):
+                name = StringField('What is you name?', validators=[DataRequired()])
+                submit = SubmitField('Submit')
+
+        # rotta con un form
+        @app.route("/form_esempio", methods=['GET', 'POST'])
+        def form_esempio():
+                name = None
+                form = NameForm()
+                if form.validate_on_submit():
+                        name = form.name.data
+                        form.name.data = ''
+                return render_template("pagina_con_form.html", form=form, name=name)
+
+Esempio (pagina con form html):
+
+        {% extends "bootstrap/base.html" %}
+
+        {% block title %}Esempio di form con Flask{% endblock %}
+
+        {% block content %}
+        <form method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.name.label }} {{ form.name() }}
+                {{ form.submit() }}
+        </form>
+        {% endblock %}
+
+#### Spiegazione dei flask form
+
