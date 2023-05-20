@@ -233,3 +233,18 @@ Far arrivare il valore dentro la vista HTML usando le seguenti funzioni trmite J
                         <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
                 </div>
 
+
+## Flask Forms
+
+Flask WTF forms è un'estensione pensata per le form html in Flask.
+
+Esempio:
+
+        pip install flask-wtf
+
+Permette l'installazione del modulo flask wtf, però questo modulo necessita di **una srecret key** per poter funzionare e non 
+si inizializza normalmente come tutti gli altri moduli, la secret key serve per motivi di sicurezza in merito ad attacchi 
+CSRF sui form. Ogni flask form si rappresenta in una Classe Python, che eredita FlaskForm.
+
+Esempio:
+
