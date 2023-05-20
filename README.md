@@ -175,3 +175,61 @@ Esempio di definizione di una pagina 404:
                 @app.errorhandler(404)
                 def page_not_found(e):
                         return render_template("404.html"), 404
+
+### Links con url_for
+
+**url_for** funzione helper di Flask che viene messa a disposizione per gestire e generare in maniera dinamica gli url delle applicazioni tramite le informazioni memorizzate nella mappa degli url.
+
+Gli url si possono generare con url_for() passando le parti dinamiche come parole chiave come argomenti.
+
+Esempio:
+
+                url_for('user', name=john, page=2, version=1)
+
+                /user/john?page=2&version=1
+
+### static
+
+Percorso speciale per url assoluti, un posto dove risiedono le risorse statiche di una applicazione Flask, come i file css, javascript ecc...
+
+Esempio:
+
+                href = {{ url_for('static', filename='favicon.ico') }}
+
+### Flask Moment (basato su Moment js)
+
+Come includere la libreria Moment.js in Flask:
+
+                pip install flask-moment
+
+                pip freeze > requirements.txt
+
+Nel progetto **app.py** includere il seguente codice:
+
+                from flask_moment import Moment
+
+                moment=Moment(app)
+
+Includere nel template base.html:
+
+                {% block scripts %}
+                        {{super()}}
+                        {{moment.include_moment()}}
+                {% endblock %}
+
+Valorizzare correttamente la rotta in cui usare le funzione di Moment:
+
+                from datetime import datetime
+
+                @app.route("/favicon")
+                def favicon():
+                        return render_template("favicon.html", current_time=datetime.utcnow())
+
+Far arrivare il valore dentro la vista HTML usando le seguenti funzioni trmite Jinja2:
+
+                <div class="page-header">
+                        <h1>Hello, world</h1>
+                        <p>The Local date time is: {{ moment(current_time).format('LLL') }}</p>
+                        <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+                </div>
+
