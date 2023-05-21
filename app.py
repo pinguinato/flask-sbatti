@@ -78,7 +78,27 @@ def form_esempio():
         name = form.name.data
         form.name.data = ''
     return render_template("pagina_con_form.html", form=form, name=name)
-    
+  
+  
+  
+# altro esempio con un form
+class NuovaForm(FlaskForm):
+    first_name = StringField('First name:', validators=[DataRequired()])
+    last_name = StringField('Last name:', validators=[DataRequired()])
+    submit = SubmitField('Ok')
+
+@app.route("/form_esempio_2", methods=['GET', 'POST'])
+def form_esempio_2():
+    first_name = None
+    last_name = None
+    nuova_form = NuovaForm()
+    if nuova_form.validate_on_submit():
+        first_name = nuova_form.first_name.data
+        last_name = nuova_form.last_name.data
+        nuova_form.first_name.data = ''
+        nuova_form.last_name.data = ''
+    return render_template("pagina_con_form2.html", form=nuova_form, first_name=first_name, last_name=last_name)
+  
 
 
 

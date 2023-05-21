@@ -1,0 +1,56 @@
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{{ wtf.quick_form(form) }}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    {% block page_content %}
+
+
+    <div class="page-header">
+        <h1>Hello, {% if first_name and last_name %} {{ first_name }} {{ last_name }} {% else %} Stranger {% endif %}</h1>
+    </div>
+
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.first_name.label }} {{ form.first_name() }}
+        {{ form.last_name.label }} {{ form.last_name() }}
+        {{ form.submit() }}
+    </form>
+    
+
+    {% endblock %}
+
+</div>
+
+{% endblock %}
